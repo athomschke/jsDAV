@@ -12,7 +12,14 @@ var jsDAV = require("./../lib/jsdav"),
 
 jsDAV.debugMode = true;
 
-jsDAV.createServer({
+var server = jsDAV.createServer({
     node: __dirname + "/assets",
-    locksBackend: new jsDAV_Locks_Backend_FS(__dirname + "/assets")
+    locksBackend: new jsDAV_Locks_Backend_FS(__dirname + "/assets"),
+    baseUri: '/'
 }, 8000);
+
+console.info("Base uri: " + server.getBaseUri());
+
+server.setBaseUri('');
+
+console.info("Base uri: " + server.getBaseUri());
